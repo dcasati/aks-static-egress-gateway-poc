@@ -1,0 +1,27 @@
+# Pod WITHOUT egress gateway annotation
+# Egresses via worker node → Azure LB SNAT
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-no-gateway
+  namespace: default
+spec:
+  containers:
+  - name: curl
+    image: curlimages/curl:latest
+    command: ["sleep", "3600"]
+---
+# Pod WITH egress gateway annotation
+# Egresses via gateway node (10.16.69.6 / 10.16.69.7) — routable internal IP
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-with-gateway
+  namespace: default
+  annotations:
+    kubernetes.azure.com/static-gateway-configuration: corp-egress-gw
+spec:
+  containers:
+  - name: curl
+    image: curlimages/curl:latest
+    command: ["sleep", "3600"]

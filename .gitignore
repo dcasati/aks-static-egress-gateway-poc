@@ -1,0 +1,7 @@
+# .gitignore
+cluster.config
+*.kubeconfig
+.kube/
+._*
+.DS_Store
+.envrc

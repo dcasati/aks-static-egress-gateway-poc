@@ -1,0 +1,14 @@
+apiVersion: egressgateway.kubernetes.azure.com/v1alpha1
+kind: StaticGatewayConfiguration
+metadata:
+  name: corp-egress-gw
+  namespace: default
+spec:
+  gatewayNodepoolName: gatewaypool
+  # Keep egress on private routable IPs only — no public IPs allocated
+  provisionPublicIps: false
+  # Exclude overlay/service CIDRs and IMDS from gateway routing
+  excludeCidrs:
+    - 100.64.0.0/14   # pod overlay CIDR
+    - 192.168.128.0/17 # service CIDR
+    - 169.254.169.254/32 # Azure IMDS
