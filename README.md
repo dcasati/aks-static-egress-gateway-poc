@@ -5,8 +5,6 @@ A proof-of-concept demonstrating how to solve IPv4 exhaustion in AKS when using
 address space** while routing pod egress to internal corporate networks through a
 dedicated **Static Egress Gateway** on a routable subnet.
 
-> **GitHub:** [github.com/dcasati](https://github.com/dcasati)
-
 ---
 
 ## Problem
